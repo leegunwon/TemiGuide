@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.robotemi.sdk.TtsRequest;
 import com.robotemi.sdk.listeners.OnGoToLocationStatusChangedListener;
 import com.robotemi.sdk.Robot;
@@ -136,6 +138,19 @@ public class WhereToGoActivity extends AppCompatActivity implements
         // 김기현 교수님 버튼이 클릭되었을 때 실행되는 메소드
         robot.goTo("학과사무실");
         Intent intent = new Intent(this, DeliveryToActicity.class);
+        startActivity(intent);
+    }
+
+    public void toMain_del(View view) {
+        // 종료하기 버튼이 클릭되었을 때 실행되는 메소드
+        DatabaseReference mReference_dest; //데이터 쓰기
+        FirebaseDatabase mDatabase_dest;
+
+        mDatabase_dest = FirebaseDatabase.getInstance();
+        mReference_dest = mDatabase_dest.getReference("running");
+        mReference_dest.setValue(false);
+
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

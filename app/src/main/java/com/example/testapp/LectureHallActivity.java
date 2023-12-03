@@ -3,8 +3,14 @@ package com.example.testapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 
 public class LectureHallActivity extends AppCompatActivity {
     @Override
@@ -41,6 +47,7 @@ public class LectureHallActivity extends AppCompatActivity {
 
     public void goToSecondPage_lec(View view) {
         // 버튼이 클릭되었을 때 실행되는 메소드
+
         Intent intent = new Intent(this, SecondActivity.class);
         startActivity(intent);
     }

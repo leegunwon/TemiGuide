@@ -8,10 +8,13 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.robotemi.sdk.Robot;
 import com.robotemi.sdk.TtsRequest;
 import com.robotemi.sdk.listeners.OnGoToLocationStatusChangedListener;
@@ -53,6 +56,20 @@ public class SecondActivity extends AppCompatActivity implements
         startActivity(intent);
     }
     public void toMain(View view) {
+        // Firebase에 값을 쓰기
+        DatabaseReference mReference_lec; //데이터 쓰기
+        FirebaseDatabase mDatabase_lec;
+
+        mDatabase_lec = FirebaseDatabase.getInstance();
+        mReference_lec = mDatabase_lec.getReference("running");
+        mReference_lec.setValue(false);
+        mReference_lec = mDatabase_lec.getReference("chung_pl");
+        mReference_lec.setValue(false);
+        mReference_lec = mDatabase_lec.getReference("stair_pl");
+        mReference_lec.setValue(false);
+        mReference_lec = mDatabase_lec.getReference("mecha_pl");
+        mReference_lec.setValue(false);
+
         // 종료하기 버튼이 클릭되었을 때 실행되는 메소드
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
